@@ -1,0 +1,26 @@
+{
+    "name": "oxidprojects/dependency-injection",
+    "description": "The missing Symfony Dependency injection for OXID eShop",
+    "type": "add-on",
+    "require": {
+        "symfony/dependency-injection": "^3.1|^4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    },
+    "autoload": {
+        "psr-4": {
+            "oxidprojects\\DI\\": "src/"
+        },
+        "files": [
+            "function_project_container.php"
+        ]
+    },
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Tobias Matthaiou",
+            "email": "developer@tobimat.eu"
+        }
+    ]
+}
