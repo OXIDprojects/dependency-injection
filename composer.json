@@ -1,6 +1,7 @@
 {
     "name": "oxidprojects/dependency-injection",
-    "description": "The missing Symfony Dependency injection for OXID eShop",
+    "description": "The missing dependency injection for OXID eShop",
+    "license": "GPL-3.0-or-later",
     "type": "add-on",
     "require": {
         "symfony/dependency-injection": "^3.1|^4"
@@ -16,7 +17,6 @@
             "function_project_container.php"
         ]
     },
-    "license": "GNU",
     "authors": [
         {
             "name": "Tobias Matthaiou",
