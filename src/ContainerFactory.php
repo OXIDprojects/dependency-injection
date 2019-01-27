@@ -97,10 +97,10 @@ class ContainerFactory
      * @param $path_compiled_file
      * @return \oxidprojects\DI\ProjectServiceContainer
      */
-    private function loadCompiledContainer($path_compiled_file)
+    private function loadCompiledContainer($path)
     {
-        include $path_compiled_file;
-        return $project_container = new \oxidprojects\DI\ProjectServiceContainer();
+        include $path;
+        return new \oxidprojects\DI\ProjectServiceContainer();
     }
 
     /**
