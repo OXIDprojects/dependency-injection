@@ -12,7 +12,7 @@ use \Symfony\Component\Yaml\Yaml;
 /**
  * Class ContainerFactoryTest
  */
-class ContainerFactoryTest extends PHPUnit_Framework_TestCase
+class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testGetContainerSame()
