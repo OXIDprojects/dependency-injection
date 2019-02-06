@@ -99,7 +99,7 @@ class ContainerFactory
      */
     private function loadCompiledContainer($path)
     {
-        include $path;
+        include_once $path;
         return new \oxidprojects\DI\ProjectServiceContainer();
     }
 
