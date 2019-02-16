@@ -4,13 +4,14 @@
     "license": "GPL-3.0-or-later",
     "type": "add-on",
     "require": {
-        "symfony/dependency-injection": "^3.1|^4",
-        "symfony/expression-language": "^3.4|^4"
+        "symfony/dependency-injection": "^3.1",
+        "symfony/expression-language": "^3.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^6",
         "mikey179/vfsStream": "^1.6",
-        "symfony/yaml": "^4.2"
+        "symfony/config": "*",
+        "symfony/yaml": "*"
     },
     "autoload": {
         "psr-4": {
