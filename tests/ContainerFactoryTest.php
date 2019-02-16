@@ -39,6 +39,12 @@ class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
                         'tagService' => [
                             'services.yaml' => file_get_contents(__DIR__.$DS.'lib'.$DS.'TagService'.$DS.'services.yaml')
                         ],
+                    ],
+                    'oe'  => [
+                        'paydings' => [
+                            'metadata.php' => '<?php'
+                        ],
+                        'vendormetadata.php' => '',
                     ]
                 ]
             ]

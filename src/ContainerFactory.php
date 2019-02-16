@@ -222,9 +222,11 @@ class ContainerFactory
                 $fnmatch = [];
 
                 if (!empty($pathPattern)) {
-                    $fnmatch = $this->streamSafeGlob($path, join($DS, $pathPattern));
+                    if (is_dir($path)) {
+                        $fnmatch = $this->streamSafeGlob($path, join($DS, $pathPattern));
+                    }
                 } else {
-                    $fnmatch[] = $path;
+                    $fnmatch[] = $path; //Success File found
                 }
                 $found = array_merge($found, $fnmatch);
             }

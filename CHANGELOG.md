@@ -3,6 +3,10 @@ Changelog
 
 Template  [keepachangelog](https://keepachangelog.com/de/1.0.0/)
 
+## 0.1.3 - 2019-02-16
+### Fixed
+- Sometimes has try `scandir()` a file. like `vendormetadata.php`
+
 ## 0.1.2 - 2019-02-16
 ### Added
 - New feature [tag service](https://symfony.com/doc/3.1/service_container/tags.html) enabled.
