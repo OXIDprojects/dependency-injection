@@ -36,6 +36,9 @@ class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
                         'moonhine' => [
                             'services.yaml' => Yaml::dump(['services' => ['container.moonhine' => ['class' => static::class]]])
                         ],
+                        'tagService' => [
+                            'services.yaml' => file_get_contents(__DIR__.$DS.'lib'.$DS.'TagService'.$DS.'services.yaml')
+                        ],
                     ]
                 ]
             ]
@@ -77,4 +80,16 @@ class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('container.moonhine', $container->getServiceIds());
     }
 
+    public function testTagServices()
+    {
+        //Arrange
+        $container = ContainerFactory::getInstance()->getContainer();
+
+        //Act
+        $planetCollection = $container->get('universe');
+
+        //Assert
+        $this->assertContains(\oxidprojects\DI\Tests\TagService\MarsPlanet::class, $planetCollection->planet);
+        $this->assertContains(\oxidprojects\DI\Tests\TagService\SunPlanet::class, $planetCollection->planet);
+    }
 }

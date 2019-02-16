@@ -23,7 +23,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OxidEsales\\Eshop\\Core\\": "tests/lib/"
+            "OxidEsales\\Eshop\\Core\\": "tests/lib/",
+            "oxidprojects\\DI\\Tests\\": "tests/lib/"
         }
     },
     "authors": [

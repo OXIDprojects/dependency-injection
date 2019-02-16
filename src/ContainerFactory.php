@@ -10,6 +10,7 @@ namespace oxidprojects\DI;
 
 use OxidEsales\Eshop\Core\ConfigFile;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
@@ -151,6 +152,7 @@ class ContainerFactory
      */
     private function compiled(ContainerBuilder $container)
     {
+        $this->registerCustomCompilerPass($container);
         $container->compile();
 
         return $this;
@@ -229,5 +231,22 @@ class ContainerFactory
         }
 
         return $found;
+    }
+
+    /**
+     * Search Service with Tag 'compiler.pass'
+     *
+     * @param ContainerBuilder $container
+     * @see https://symfony.com/doc/current/service_container/tags.html#create-a-compiler-pass
+     */
+    private function registerCustomCompilerPass(ContainerBuilder $container)
+    {
+        $serviceIds = $container->findTaggedServiceIds('compiler.pass');
+
+        foreach ($serviceIds as $service => $extras) {
+            /** @var CompilerPassInterface $customPass */
+            $customPass = $container->get($service);
+            $container->addCompilerPass($customPass);
+        }
     }
 }
