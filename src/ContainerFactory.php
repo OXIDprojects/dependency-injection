@@ -118,7 +118,7 @@ class ContainerFactory
     }
 
     /**
-     * Load all service.yml of modules
+     * Load all services.yaml of modules
      *
      * @param ContainerBuilder $container
      *
@@ -128,13 +128,14 @@ class ContainerFactory
     {
         $foundServiceYmls = $this->findServiceYmal();
 
-        foreach ($foundServiceYmls as $serviceYml) {
-            $dirname = dirname($serviceYml);
+        foreach ($foundServiceYmls as $servicesYaml) {
+            $dirname = dirname($servicesYaml);
+            $basename = basename($servicesYaml);
             $yamlFileLoader = new YamlFileLoader($container, new FileLocator($dirname));
             try {
-                $yamlFileLoader->load('service.yml');
+                $yamlFileLoader->load($basename);
             } catch (\Exception $e) {
-                getLogger()->error("$serviceYml has a Error", ['error' => $e->getMessage()]);
+                getLogger()->error("$servicesYaml has a Error", ['error' => $e->getMessage()]);
             }
         }
 
@@ -171,7 +172,7 @@ class ContainerFactory
 
 
     /**
-     * Search service.yml in all modules folder
+     * Search services.yaml in all modules folder
      *
      * @return array|false
      */
@@ -180,8 +181,53 @@ class ContainerFactory
         $DS = DIRECTORY_SEPARATOR;
         $vendor = $moduleid = "*";
 
-        $path = OX_BASE_PATH . "modules{$DS}{$vendor}{$DS}{$moduleid}{$DS}service.yml";
+        $moduleDir = OX_BASE_PATH . "modules";
+        $modulePattern = "{$vendor}{$DS}{$moduleid}{$DS}";
 
-        return glob($path);
+        $service_yml = "{$modulePattern}service.yml";
+        $paths = $this->streamSafeGlob($moduleDir, $service_yml);
+
+        $services_yaml = "{$modulePattern}services.yaml";
+        $paths = array_merge($paths, $this->streamSafeGlob($moduleDir, $services_yaml));
+
+        return $paths;
+    }
+
+    /**
+     * Glob that is safe with streams (vfs for example)
+     *
+     * @param string $directory
+     * @param string $pathPattern
+     * @see [Investigate glob()](https://github.com/mikey179/vfsStream/issues/2#issuecomment-252271019)
+     * @return array
+     */
+    private function streamSafeGlob($directory, $pathPattern)
+    {
+        $DS = DIRECTORY_SEPARATOR;
+        $files = scandir($directory);
+        $found = [];
+
+        $pathPattern = explode($DS, $pathPattern);
+        $filePattern = array_shift($pathPattern);
+
+        foreach ($files as $filename) {
+            if (in_array($filename, ['.', '..'])) {
+                continue;
+            }
+
+            if (fnmatch($filePattern, $filename)) {
+                $path = "{$directory}{$DS}{$filename}";
+                $fnmatch = [];
+
+                if (!empty($pathPattern)) {
+                    $fnmatch = $this->streamSafeGlob($path, join($DS, $pathPattern));
+                } else {
+                    $fnmatch[] = $path;
+                }
+                $found = array_merge($found, $fnmatch);
+            }
+        }
+
+        return $found;
     }
 }

@@ -11,8 +11,8 @@
  *
  * Ideal um Factory Klassen zu sparen und bei Unit Test die Klassen zu Mocken.
  *
- * Es werden alle Module verzeichnis nach der Datei service.yml durchsucht und gelesen.
- * `source/modules/[*]/[*]/service.yml`
+ * Es werden alle Module verzeichnis nach der Datei services.yaml durchsucht und gelesen.
+ * `source/modules/[*]/[*]/services.yaml`
  *
  * @see https://symfony.com/doc/3.1/service_container.html
  *
