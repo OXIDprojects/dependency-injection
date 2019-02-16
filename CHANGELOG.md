@@ -1,7 +1,13 @@
 Changelog
 =========
 
-Templete https://keepachangelog.com/de/1.0.0/
+Template  [keepachangelog](https://keepachangelog.com/de/1.0.0/)
+
+## 0.1.2 - 2019-02-16
+### Added
+- New feature [tag service](https://symfony.com/doc/3.1/service_container/tags.html) enabled.
+### Changed
+-  `service.yml` to `services.yaml` as usual. But both works.
 
 ## 0.1.1 - 2019-02-06
 ### Fixed

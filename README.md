@@ -3,6 +3,9 @@ Dependency Injection
 
 The missing dependency injection for OXID eShop
 
+  * [Blog (DE)](https://oxidforge.org/de/dependency-injection-fuer-oxid-eshop.html)
+  * [Issues](https://github.com/OXIDprojects/dependency-injection/issues)
+  
 ## Install
 
     composer require "oxidprojects/dependency-injection"
