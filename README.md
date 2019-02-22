@@ -1,6 +1,9 @@
 Dependency Injection
 ====================
 
+[![Build Status](https://travis-ci.org/OXIDprojects/dependency-injection.svg?branch=master)](https://travis-ci.org/OXIDprojects/dependency-injection)
+[![Coverage Status](https://coveralls.io/repos/github/OXIDprojects/dependency-injection/badge.svg?branch=master)](https://coveralls.io/github/OXIDprojects/dependency-injection?branch=master)
+
 The missing dependency injection for OXID eShop
 
   * [Blog (DE)](https://oxidforge.org/de/dependency-injection-fuer-oxid-eshop.html)

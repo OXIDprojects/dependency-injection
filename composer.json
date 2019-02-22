@@ -11,7 +11,8 @@
         "phpunit/phpunit": "^6",
         "mikey179/vfsStream": "^1.6",
         "symfony/config": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "php-coveralls/php-coveralls": "^2.1"
     },
     "autoload": {
         "psr-4": {
