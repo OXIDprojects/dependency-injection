@@ -6,56 +6,15 @@
  * Time: 17:43
  */
 
+namespace oxidprojects\DI\Tests;
+
 use oxidprojects\DI\ContainerFactory;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ContainerFactoryTest
  */
 class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
 {
-
-    private static  $url;
-
-    /**
-     * @inheritDoc
-     */
-    public static function setUpBeforeClass()
-    {
-        $DS = DIRECTORY_SEPARATOR;
-        self::$url = \org\bovigo\vfs\vfsStream::setup('root', 0755, [
-            'source' => [
-                'config.inc.php' => '<?php $this->sCompileDir  = __DIR__ . "/tmp";',
-                'tmp' => [],
-                'modules' => [
-                    'tm' => [
-                        'sunshine' => [
-                            'service.yml' => Yaml::dump(['services' => ['container.service.yml' => ['class' => static::class]]]),
-                            'services.yaml' => Yaml::dump(['services' => ['container.services.yaml' => ['class' => static::class]]])
-                        ],
-                        'moonhine' => [
-                            'services.yaml' => Yaml::dump(['services' => ['container.moonhine' => ['class' => static::class]]])
-                        ],
-                        'tagService' => [
-                            'services.yaml' => file_get_contents(__DIR__.$DS.'lib'.$DS.'TagService'.$DS.'services.yaml')
-                        ],
-                    ],
-                    'oe'  => [
-                        'paydings' => [
-                            'metadata.php' => '<?php'
-                        ],
-                        'vendormetadata.php' => '',
-                    ]
-                ]
-            ]
-
-        ])->url();
-        self::$url  .= DIRECTORY_SEPARATOR . 'source' . DIRECTORY_SEPARATOR;
-
-        if (!defined('OX_BASE_PATH')) {
-            define('OX_BASE_PATH', self::$url);
-        }
-    }
 
     public function testGetContainerSame()
     {
@@ -79,8 +38,8 @@ class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
         $container = ContainerFactory::getInstance()->getContainer();
 
         //Assert
-        $this->assertInstanceOf(Symfony\Component\DependencyInjection\Container::class, $container);
-        $this->assertFileExists(self::$url  . '/tmp/ceProjectServiceContainer.php');
+        $this->assertInstanceOf(\Symfony\Component\DependencyInjection\Container::class, $container);
+        $this->assertFileExists(OxidEsaleFileStructure::$url  . '/tmp/ceProjectServiceContainer.php');
         $this->assertContains('container.service.yml', $container->getServiceIds());
         $this->assertContains('container.services.yaml', $container->getServiceIds());
         $this->assertContains('container.moonhine', $container->getServiceIds());
@@ -95,7 +54,7 @@ class ContainerFactoryTest extends \PHPUnit\Framework\TestCase
         $planetCollection = $container->get('universe');
 
         //Assert
-        $this->assertContains(\oxidprojects\DI\Tests\TagService\MarsPlanet::class, $planetCollection->planet);
-        $this->assertContains(\oxidprojects\DI\Tests\TagService\SunPlanet::class, $planetCollection->planet);
+        $this->assertContains(\oxidprojects\DI\Tests\lib\TagService\MarsPlanet::class, $planetCollection->planet);
+        $this->assertContains(\oxidprojects\DI\Tests\lib\TagService\SunPlanet::class, $planetCollection->planet);
     }
 }

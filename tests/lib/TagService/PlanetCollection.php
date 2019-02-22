@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by LoberonEE.
- * Autor: Tobias Matthaiou <tm@loberon.de>
+ * Autor: Tobias Matthaiou
  * Date: 16.02.19
  * Time: 10:10
  */
-namespace oxidprojects\DI\Tests\TagService;
+namespace oxidprojects\DI\Tests\lib\TagService;
 
 /**
  * Class PlanetCollection
- * @package oxidprojects\DI\Tests\TagService
+ * @package oxidprojects\DI\Tests\lib\TagService
  */
 class PlanetCollection
 {

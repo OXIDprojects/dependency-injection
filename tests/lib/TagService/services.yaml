@@ -1,23 +1,23 @@
 services:
 
   universe:
-    class: 'oxidprojects\DI\Tests\TagService\PlanetCollection'
+    class: 'oxidprojects\DI\Tests\lib\TagService\PlanetCollection'
     public: true
 
   planet.composer.pass:
-    class: 'oxidprojects\DI\Tests\TagService\ComposerPassPlanet'
+    class: 'oxidprojects\DI\Tests\lib\TagService\ComposerPassPlanet'
     public: false
     tags:
     - name: 'compiler.pass'
 
   plaent.mars:
-    class: 'oxidprojects\DI\Tests\TagService\MarsPlanet'
+    class: 'oxidprojects\DI\Tests\lib\TagService\MarsPlanet'
     public: false
     tags:
     - name: 'planet.universe'
 
   plaent.sun:
-    class: 'oxidprojects\DI\Tests\TagService\SunPlanet'
+    class: 'oxidprojects\DI\Tests\lib\TagService\SunPlanet'
     public: false
     tags:
     - name: 'planet.universe'
