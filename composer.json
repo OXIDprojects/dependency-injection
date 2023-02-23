@@ -9,7 +9,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6",
-        "mikey179/vfsStream": "^1.6",
+        "mikey179/vfsstream": "^1.6",
         "symfony/config": "*",
         "symfony/yaml": "*",
         "php-coveralls/php-coveralls": "^2.1"
